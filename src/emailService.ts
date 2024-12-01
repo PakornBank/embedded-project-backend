@@ -2,6 +2,7 @@ import nodemailer from "nodemailer";
 import { db, storage } from "./firebase";
 import { convertRGB565ToJpeg } from "./utils/rgb565ToJpeg";
 import fs from "fs/promises";
+import { detectAndClassifyPlant } from "./detectAndClassifyPlant";
 
 interface SensorData {
 	capture: number;
@@ -55,6 +56,7 @@ export const sendSensorDataEmail = async (
 	sensorData: SensorData,
 	imagePath: string
 ): Promise<void> => {
+	const { top } = await detectAndClassifyPlant(imagePath);
 	const mailOptions = {
 		from: process.env.EMAIL_USER,
 		to: "pakorn22120@gmail.com",
@@ -62,6 +64,7 @@ export const sendSensorDataEmail = async (
 		html: `
       <h1>ESP32 Sensor Data Report</h1>
       <ul>
+        <li><strong>Plant health:</strong> ${top}</li>
         <li><strong>Temperature:</strong> ${sensorData.temperature} °C</li>
         <li><strong>Humidity:</strong> ${sensorData.humidity} %</li>
         <li><strong>Light:</strong> ${sensorData.light} lux</li>
