@@ -35,7 +35,7 @@ export const downloadAndConvertImage = async (
 	height: number
 ): Promise<string> => {
 	const bucket = storage.bucket();
-	const rawFilePath = "./tempImage.raw";
+	const rawFilePath = "./tmp/tempImage.raw";
 
 	// Download .raw image
 	const file = bucket.file(storagePath);

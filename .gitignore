@@ -51,3 +51,4 @@ serviceAccountKey.json
 
 # macOS specific files
 ._*
+.vercel

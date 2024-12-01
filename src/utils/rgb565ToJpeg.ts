@@ -38,7 +38,7 @@ export const convertRGB565ToJpeg = async (
 	const rawBuffer = await fs.readFile(inputFilePath); // Read the .raw RGB565 file
 	const rgbBuffer = decodeRGB565(rawBuffer, width, height); // Decode RGB565 to RGB888
 
-	const outputFilePath = "./outputImage.jpg";
+	const outputFilePath = "./tmp/outputImage.jpg";
 	await sharp(rgbBuffer, { raw: { width, height, channels: 3 } }) // Create a raw image from RGB888 buffer
 		.jpeg() // Convert to JPEG
 		.toFile(outputFilePath);
