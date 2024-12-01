@@ -9,9 +9,12 @@ import fs from "fs/promises";
 import axios from "axios";
 import { sys } from "typescript";
 import { detectAndClassifyPlant } from "./detectAndClassifyPlant";
+import cors from "cors";
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(cors());
 
 app.get("/trigger-sensor-email", async (req, res) => {
 	try {
@@ -51,3 +54,5 @@ app.listen(port, () => {
 	console.log(`Server running on http://localhost:${port}`);
 	scheduleSensorDataEmail();
 });
+
+export default app;
