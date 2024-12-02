@@ -59,7 +59,7 @@ export const sendSensorDataEmail = async (
 	const { top } = await detectAndClassifyPlant(imagePath);
 	const mailOptions = {
 		from: process.env.EMAIL_USER,
-		to: "pakorn22120@gmail.com",
+		to: "nattapon.how@gmail.com",
 		subject: "ESP32 Daily Report",
 		html: `
       <h1>ESP32 Sensor Data Report</h1>
